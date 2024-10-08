@@ -1,0 +1,24 @@
+{{define "title"}}{{.Thread.Title}}{{end}}
+{{define "main"}}
+<dl>
+  <dt>Date</dt>
+  <dd>{{.Thread.Created}}</dd>
+  <dt>Author</dt>
+  <dd>{{.Thread.Author.Username}}</dd>
+</dl>
+<ul>
+  {{range .Thread.Posts}}
+  <li>
+    <article>
+      <dl>
+        <dt>Author</dt>
+        <dd>{{.Author.Username}}</dd>
+        <dt>Date</dt>
+        <dd>{{.Created}}</dd>
+      </dl>
+      <p>{{.Body}}</p>
+    </article>
+  </li>
+  {{end}}
+</ul>
+{{end}}
