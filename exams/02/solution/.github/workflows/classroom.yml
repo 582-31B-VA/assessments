@@ -1,0 +1,34 @@
+name: Autograding Tests
+'on':
+  - push
+  - repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Check type hints
+        run: uv run pyright
+        if: always()
+
+      - name: Check formatting
+        run: uv run ruff format --check
+        if: always()
+
+      - name: Check lints
+        run: uv run ruff check
+        if: always()
+
+      - name: Check tests
+        run: uv run pytest
+        if: always()

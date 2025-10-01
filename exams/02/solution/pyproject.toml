@@ -1,0 +1,17 @@
+[project]
+name = "template"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = ["pyright>=1.1.401", "pytest>=8.3.5", "ruff>=0.11.11"]
+
+[tool.ruff.lint]
+select = ["ANN", "ARG", "N", "E", "D", "PLW0603", "SIM", "B", "F"]
+ignore = ["D100", "D211", "D213", "D203", "ANN204", "D105", "D107", "D101"]
+exclude = ["test_*.py"]
+
+[tool.pyright]
+ignore = ["test_*.py"]
+venvPath = "."
+venv = ".venv"
